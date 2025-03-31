@@ -268,7 +268,7 @@ case "$host" in
       ;;
 
   *-pc-cygwin*)
-      scsilib_libs=""
+      scsilib_libs="-liconv"
       scsilib_objs="ScsiIf-win.o"
       ;;
 
