@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: cdrdao
-          path: ./bin/
+          path: ./cdrdao
 
   windows:
     name: Windows
@@ -50,10 +50,10 @@ jobs:
         run: |
           bash autoreconf
           bash ./configure
-          bash make
+          make
 
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
           name: cdrdao
-          path: ./bin/
+          path: ./cdrdao
