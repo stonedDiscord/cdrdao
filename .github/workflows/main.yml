@@ -26,8 +26,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: cdrdao
-          path: .
+          name: cdrdao-ubuntu
+          path: ./dao/cdrdao
 
   macos:
     name: Mac OS
@@ -52,8 +52,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: cdrdao
-          path: .
+          name: cdrdao-mac
+          path: ./dao/cdrdao
 
   windows:
     name: Windows
@@ -70,7 +70,7 @@ jobs:
       - name: Install Cygwin
         uses: egor-tensin/setup-cygwin@v4.0.1
         with:
-          packages: autoconf automake libtool libiconv-devel libgconf2-devel gcc-objc++ libvorbis-devel
+          packages: autoconf automake libtool libiconv libgconf2 gcc-core libvorbis libao
 
       - name: Build using makefile
         run: |
@@ -81,5 +81,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: cdrdao
-          path: .
+          name: cdrdao-win
+          path: ./dao/cdrdao-exe
