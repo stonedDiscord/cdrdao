@@ -20,6 +20,7 @@ jobs:
       - name: Build using makefile
         run: |
           autoreconf
+          ./configure
           make
 
       - name: Upload Artifact
@@ -41,11 +42,12 @@ jobs:
       - name: Install Cygwin
         uses: egor-tensin/setup-cygwin@v4.0.1
         with:
-          packages: autoconf automake libtool gconf2
+          packages: autoconf automake libtool gconf2 libiconv
 
       - name: Build using makefile
         run: |
           bash autoreconf
+          bash ./configure
           bash make
 
       - name: Upload Artifact
