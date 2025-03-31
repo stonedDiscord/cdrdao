@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential autoconf automake libtool libc6-dev gettext libgtk2.0-0
+          sudo apt-get install -y build-essential autoconf automake libtool libc6-dev gettext libgtk2.0-dev
       
       - name: Build using makefile
         run: |
@@ -32,6 +32,8 @@ jobs:
   windows:
     name: Windows
     runs-on: windows-latest
+    env:
+      SHELLOPTS: igncr
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -42,7 +44,7 @@ jobs:
       - name: Install Cygwin
         uses: egor-tensin/setup-cygwin@v4.0.1
         with:
-          packages: autoconf automake libtool gconf2 libiconv
+          packages: autoconf automake libtool libiconv-devel libgconf2-devel
 
       - name: Build using makefile
         run: |
