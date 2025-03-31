@@ -1,0 +1,74 @@
+name: Build and test
+on: [push, pull_request]
+
+jobs:
+  ubuntu:
+    name: Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          repository: ${{ env.GITHUB_REPOSITORY }}
+          ref: ${{ env.GITHUB_HEAD_REF }}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libkqueue-dev
+      
+      - name: Build using makefile
+        run: |
+          ./autogen.sh
+          make
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: cdrdao
+          path: ./bin/
+
+  macos:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          repository: ${{ env.GITHUB_REPOSITORY }}
+          ref: ${{ env.GITHUB_HEAD_REF }}
+
+      - name: Build using makefile
+        run: |
+          ./autogen.sh
+          make
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: cdrdao
+          path: ./bin/
+
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          repository: ${{ env.GITHUB_REPOSITORY }}
+          ref: ${{ env.GITHUB_HEAD_REF }}
+
+      - name: Install Cygwin
+        uses: egor-tensin/setup-cygwin@v4.0.1
+
+      - name: Build using makefile
+        run: |
+          ./autogen.sh
+          make
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: cdrdao
+          path: ./bin/
