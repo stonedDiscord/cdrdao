@@ -41,7 +41,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew install autoconf automake libtool gettext vorbis-tools
+          brew install autoconf automake libtool vorbis-tools
       
       - name: Build using makefile
         run: |
@@ -70,7 +70,7 @@ jobs:
       - name: Install Cygwin
         uses: egor-tensin/setup-cygwin@v4.0.1
         with:
-          packages: autoconf automake libtool libiconv libgconf2 gcc-g++ libvorbis libao
+          packages: autoconf automake libtool libiconv libiconv-devel libgconf2 libc++-devel gcc-g++ libvorbis libao
 
       - name: Build using makefile
         run: |
